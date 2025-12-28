@@ -13,6 +13,7 @@ import { saveAnswers, loadAnswers, clearAnswers, type Answers } from "@/lib/stor
 type AppState = "welcome" | "question" | "section-summary" | "final"
 
 export function ReflectionApp() {
+  console.log("[v0] ReflectionApp rendering")
   const [appState, setAppState] = useState<AppState>("welcome")
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0)
   const [answers, setAnswers] = useState<Answers>({})
@@ -20,8 +21,10 @@ export function ReflectionApp() {
   const [mounted, setMounted] = useState(false)
 
   useEffect(() => {
+    console.log("[v0] useEffect running, setting mounted true")
     setMounted(true)
     const saved = loadAnswers()
+    console.log("[v0] Loaded answers:", saved)
     if (Object.keys(saved).length > 0) {
       setAnswers(saved)
     }
